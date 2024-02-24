@@ -1,0 +1,2 @@
+# azurecli
+Azure Cli works
