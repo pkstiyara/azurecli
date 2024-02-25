@@ -1,2 +1,2 @@
 # azurecli
-Azure Cli works
+Azure CLI commands
