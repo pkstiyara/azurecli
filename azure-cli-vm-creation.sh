@@ -30,3 +30,48 @@ az vm create \
     --admin-username azure \
     --admin-password Password@123 \
     --os-disk-size-gb 128
+
+
+# Function to create multiple VM
+
+#!/bin/bash
+
+# Fetch current resource group
+resource_group=$(az group list --query '[0].name' -o tsv)
+
+# Function to create VM
+create_vm() {
+    az vm create \
+        --resource-group $resource_group \
+        --name $1 \
+        --location eastus \
+        --image RedHat:RHEL:87-gen2:latest \
+        --size Standard_D2s_v3 \
+        --admin-username azure \
+        --admin-password Password@123 \
+        --os-disk-size-gb 128
+}
+
+# Create VMs
+create_vm rhel1
+create_vm rhel2
+create_vm rhel3
+
+
+
+# Other method to create
+
+for i in {1..3}; do \
+    az vm create \
+        --resource-group $(az group list --query '[0].name' -o tsv) \
+        --name rhel$i \
+        --location eastus \
+        --image RedHat:RHEL:87-gen2:latest \
+        --size Standard_D2s_v3 \
+        --admin-username azure \
+        --admin-password Password@123 \
+        --os-disk-size-gb 128; \
+done
+This command c
+
+
